@@ -1,0 +1,206 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+    <section class="hero-section">
+        <div class="hero-items owl-carousel">
+            <div class="single-hero-items set-bg" data-setbg="{% static 'img/hero-1.jpg' %}">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-5">
+                            <span>Bag,kids</span>
+                            <h1>Black friday</h1>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                                incididunt ut labore et dolore</p>
+                            <a href="{{ CKids.get_absolute_url }}" class="primary-btn">Shop Now</a>
+                        </div>
+                    </div>
+                    <div class="off-card">
+                        <h2>Sale <span>50%</span></h2>
+                    </div>
+                </div>
+            </div>
+            <div class="single-hero-items set-bg" data-setbg="{% static 'img/hero-2.jpg' %}">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-5">
+                            <span>Bag,kids</span>
+                            <h1>Black friday</h1>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                                incididunt ut labore et dolore</p>
+                            <a href="{{ CKids.get_absolute_url }}" class="primary-btn">Shop Now</a>
+                        </div>
+                    </div>
+                    <div class="off-card">
+                        <h2>Sale <span>50%</span></h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="banner-section spad">
+        <div class="container-fluid">
+            <div class="row">
+                {% for item in collection %}
+                <div class="col-lg-4">
+                    <div class="single-banner">
+                        <img src="/static/img/banner-{{ item.id }}.jpg" alt="">
+                        <div class="inner-text">
+                            <a href="{{ item.get_absolute_url }}"><h4>{{item.title}}</h4></a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <section class="women-banner spad">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="product-large set-bg" data-setbg="{% static 'img/products/women-large.jpg' %}">
+                        <h2>Women’s</h2>
+                        <a href="{{ CWomen.collection.get_absolute_url }}">Discover More</a>
+                    </div>
+                </div>
+                <div class="col-lg-8 offset-lg-1">
+                    <div class="filter-control">
+                        <ul>
+                            {% for item in category %}
+                                <a href="{{item.get_absolute_url }}"><li class="active">{{item.title}} </li></a>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="product-slider owl-carousel">
+                        {% for item in Women%}
+                            <div class="product-item">
+                            <div class="pi-pic">
+                                <img src="{{item.image.url}}" alt="">
+                                <div class="sale">Sale</div>
+                                <div class="icon">
+                                    <i class="icon_heart_alt"></i>
+                                </div>
+                                <ul>
+                                    <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
+                                    <li class="quick-view"><a href="{{item.get_absolute_url}}">+ Quick View</a></li>
+                                    <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
+                                </ul>
+                            </div>
+                            <div class="pi-text">
+                                <div class="catagory-name">{{item.category.title}}</div>
+                                <a href="#">
+                                    <h5>{{item.title}}</h5>
+                                </a>
+                                <div class="product-price">
+                                    ${{item.price}}
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="man-banner spad">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="filter-control">
+                        <ul>
+                            {% for item in category %}
+                                <a href="{{item.get_absolute_url }}"><li class="active">{{item.title}}</li></a>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="product-slider owl-carousel">
+                        {% for item in Men %}
+                        <div class="product-item">
+                            <div class="pi-pic">
+                                <img src="{{item.image.url}}" alt="">
+                                <div class="icon">
+                                    <i class="icon_heart_alt"></i>
+                                </div>
+                                <ul>
+                                    <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
+                                    <li class="quick-view"><a href="{{ item.get_absolute_url }}">+ Quick View</a></li>
+                                    <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
+                                </ul>
+                            </div>
+                            <div class="pi-text">
+                                <div class="catagory-name">{{item.category.title}}</div>
+                                <a href="{{item.get_absolute_url}}">
+                                    <h5>{{item.title}}</h5>
+                                </a>
+                                <div class="product-price">
+                                    ${{item.price}}
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor  %}
+                    </div>
+                </div>
+                <div class="col-lg-3 offset-lg-1">
+                    <div class="product-large set-bg m-large" data-setbg="{% static 'img/products/man-large.jpg' %}">
+                        <h2>Men’s</h2>
+                        <a href="{{ CMen.collection.get_absolute_url}}">Discover More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="instagram-photo">
+        {% for id in range %}
+        <div class="insta-item set-bg" data-setbg="/static/img/insta-{{id}}.jpg">
+            <div class="inside-text">
+                <i class="ti-instagram"></i>
+                <h5><a href="#">colorlib_Collection</a></h5>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+<br>
+    <div class="benefit-items">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="single-benefit">
+                            <div class="sb-icon">
+                                <img src="{% static 'img/icon-1.png' %}" alt="">
+                            </div>
+                            <div class="sb-text">
+                                <h6>Free Shipping</h6>
+                                <p>For all order over 99$</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="single-benefit">
+                            <div class="sb-icon">
+                                <img src="{% static 'img/icon-2.png'%}" alt="">
+                            </div>
+                            <div class="sb-text">
+                                <h6>Delivery On Time</h6>
+                                <p>If good have prolems</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="single-benefit">
+                            <div class="sb-icon">
+                                <img src="{% static 'img/icon-1.png'%}" alt="">
+                            </div>
+                            <div class="sb-text">
+                                <h6>Secure Payment</h6>
+                                <p>100% secure payment</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+<br>
+{% endblock %}

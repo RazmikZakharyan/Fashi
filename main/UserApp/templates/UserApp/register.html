@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block breadcrumb %}
+<span>Register</span>
+{% endblock%}
+
+{% block content %}
+    <div class="register-login-section spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 offset-lg-3">
+                    <div class="register-form">
+                        {% if messages %}
+                        {% for message in messages%}
+                            <div class="alert alert-danger" role="alert">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                        {% endif %}
+                        <h2>Register</h2>
+                        <form action="register" method="post">
+                            {% csrf_token %}
+                            {% for item in form %}
+                            <div class="group-input">
+                                {{ item.errors }}
+                                {{ item.label_tag }}{{item}}
+                            </div>
+                            {% endfor %}
+                            <button type="submit" class="site-btn register-btn">REGISTER</button>
+                        </form>
+                        <div class="switch-login">
+                            <a href="{% url 'login' %}" class="or-login">Or Login</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

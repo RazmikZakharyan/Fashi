@@ -1,0 +1,33 @@
+
+
+<div class="nav-item">
+        <div class="container">
+            <div class="nav-depart">
+                <div class="depart-btn">
+                    <i class="ti-menu"></i>
+                    <span>All departments</span>
+                    <ul class="depart-hover">
+                        {% for item in departments %}
+                            <li><a href="{{ item.get_absolute_url }}">{{ item.title }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <nav class="nav-menu mobile-menu">
+                <ul>
+                    <li><a href="{% url 'home' %}">Home</a></li>
+                    <li><a href="{% url 'shop'%}">Shop</a></li>
+                    <li><a href="#">Collection</a>
+                        <ul class="dropdown">
+                            {% for item in collection %}
+                            <li><a href="{{ item.get_absolute_url }}">{{item.title}}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </li>
+                    <li><a href="./contact.html">Contact</a></li>
+                    </li>
+                </ul>
+            </nav>
+            <div id="mobile-menu-wrap"></div>
+        </div>
+</div>

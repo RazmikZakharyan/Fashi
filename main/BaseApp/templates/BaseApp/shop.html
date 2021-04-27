@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% load sidebar %}
+{% block breadcrumb %}
+<span>Shop</span>
+{% endblock%}
+
+{% block content %}
+<section class="product-shop spad">
+        <div class="container">
+            <div class="row">
+                {% show_sidebar %}
+                <div class="col-lg-9 order-1 order-lg-2">
+                    <div class="product-list">
+                        <div class="row">
+                            {% for item in products %}
+                            <div class="col-lg-4 col-sm-6">
+                                <div class="product-item">
+                                    <div class="pi-pic">
+                                        <img src="{{ item.image.url }}" alt="">
+                                        <div class="icon">
+                                            <i class="icon_heart_alt"></i>
+                                        </div>
+                                        <ul>
+                                            <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
+                                            <li class="quick-view"><a href="{{ item.get_absolute_url }}">+ Quick View</a></li>
+                                            <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="pi-text">
+                                        <div class="catagory-name">{{ item.category.title}}</div>
+                                        <a href="{{ item.get_absolute_url }}">
+                                            <h5>{{ item.title }}</h5>
+                                        </a>
+                                        <div class="product-price">
+                                            ${{ item.price }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% empty %}
+                            <h3>Not found products</h3>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% if page_obj.has_other_pages %}
+                    <nav aria-label="Page navigation example">
+                      <ul class="pagination justify-content-center">
+                          {% if page_obj.has_previous %}
+                          <li class="page-item">
+                             <a class="page-link" href="?{{ s }}page={{ page_obj.previous_page_number}}" tabindex="-1" aria-disabled="true">Previous</a>
+                          </li>
+                          {% endif %}
+
+                          {% for p in page_obj.paginator.page_range %}
+                            {% if page_obj.number == p%}
+                                <li class="page-item active" aria-current="page">
+                                  <span class="page-link">{{p}}<span class="sr-only">(current)</span>
+                                  </span>
+                                </li>
+                            {% else %}
+                                <li class="page-item"><a class="page-link" href="?{{ s }}page={{p}}">{{p}}</a></li>
+                            {% endif %}
+                          {% endfor %}
+
+                          {% if page_obj.has_next %}
+                          <li class="page-item">
+                            <a class="page-link" href="?{{ s }}page={{ page_obj.next_page_number}}">Next</a>
+                          </li>
+                          {% endif %}
+                      </ul>
+                    </nav>
+                    {% endif%}
+                </div>
+            </div>
+        </div>
+</section>
+{% endblock %}
